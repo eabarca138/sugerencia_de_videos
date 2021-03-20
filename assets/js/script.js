@@ -1,15 +1,11 @@
 class Multimedia{
     constructor(url){
         const _url = url;
-        this.geturl = () => _url;
+        this.geturl = () => _url
     }
     get url(){
         return this.geturl();
     }
-    setInicio(tiempo){
-        return 'Este método es para realizar un cambio en la URL del video',
-        this._url = `${this._url}?start=${tiempo}`
-    };
 };
 
 class Reproductor extends Multimedia{
@@ -24,6 +20,11 @@ class Reproductor extends Multimedia{
     playMultimedia(){
         Medios(this.url, this.id);
     };
+    setInicio(tiempo = 0) {
+        const idd = document.getElementById(this.id);
+        if (!idd) return;
+        idd.setAttribute("src", `${this.url}?start=${tiempo}`);
+      }
 };
 
 const Medios = (() => {
@@ -41,6 +42,6 @@ const repMusica = new Reproductor('https://www.youtube.com/embed/B2RyoRG2vs8', '
 const repSerie = new Reproductor('https://www.youtube.com/embed/ry-jzv18fOY', 'serie');
 
 repMusica.playMultimedia();
-repPelicula.setInicio('40')
 repPelicula.playMultimedia();
+repPelicula.setInicio('40')
 repSerie.playMultimedia();
